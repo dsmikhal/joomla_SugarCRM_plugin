@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="user">
+  <name>User - Trading Pursuits SugarCRM</name>
+  <author>James Moey</author>
+  <creationDate>March 2011</creationDate>
+  <copyright>(C) 2011 Trading Pursuits All rights reserved.</copyright>
+  <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+  <authorEmail>james.moey@platinmpursuits.com</authorEmail>
+  <authorUrl>http://www.tradingpursuits.com</authorUrl>
+  <version>0.0.1</version>
+  <description>This plugin provides Sugar CRM User.</description>
+  <files>
+      <filename plugin="sugaruser_profile">sugaruser_profile.php</filename>
+  </files>
+  <config>
+    <fields name="params">
+      <fieldset name="basic">
+        <field default="" name="url" type="text" size="20"
+                       label="Sugar API URL"
+                       description="Enter the url to Sugar API"/>
+        <field default="" name="username" type="text" size="20" label="API Username" description="API Username"/>
+        <field default="" name="password" type="text" size="20" label="API Password" description="API Password"/>
+      </fieldset>
+    </fields>
+  </config>
+</extension>

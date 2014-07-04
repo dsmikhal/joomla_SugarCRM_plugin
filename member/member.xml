@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- $Id: profile.xml 21513 2011-06-10 08:18:07Z infograf768 $ -->
+<extension version="1.7" type="plugin" group="user">
+  <name>plg_user_member</name>
+  <author>Dex</author>
+  <creationDate>July 2012</creationDate>
+  <copyright>(C) 2005 - 2011 Open Source Matters. All rights reserved.</copyright>
+  <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+  <authorEmail>admin@joomla.org</authorEmail>
+  <authorUrl>www.joomla.org</authorUrl>
+  <version>1.1.0</version>
+  <description>PLG_USER_MEMBER_XML_DESCRIPTION</description>
+  <files>
+    <filename plugin="member">member.php</filename>
+    <filename>index.html</filename>
+    <folder>members</folder>
+  </files>
+  <languages>
+    <language tag="en-GB">en-GB.plg_user_member.ini</language>
+    <language tag="en-GB">en-GB.plg_user_member.sys.ini</language>
+  </languages>
+  <config>
+    <fields name="params">
+      <fieldset name="basic">
+        <field name="register-require-user" type="spacer" class="text"
+					label="PLG_USER_MEMBER_FIELD_NAME_REGISTER_REQUIRE_USER"
+				/>
+        <field name="register-require_first_name" type="list"
+				description="PLG_USER_MEMBER_FIELD_FIRST_NAME_DESC"
+				label="PLG_USER_MEMBER_FIELD_FIRST_NAME_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_last_name" type="list"
+				description="PLG_USER_MEMBER_FIELD_LAST_NAME_DESC"
+				label="PLG_USER_MEMBER_FIELD_LAST_NAME_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_phone_home" type="list"
+				description="PLG_USER_MEMBER_FIELD_PHONE_HOME_DESC"
+				label="PLG_USER_MEMBER_FIELD_PHONE_HOME_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_phone_mobile" type="list"
+				description="PLG_USER_MEMBER_FIELD_PHONE_MOBILE_DESC"
+				label="PLG_USER_MEMBER_FIELD_PHONE_MOBILE_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_phone_work" type="list"
+				description="PLG_USER_MEMBER_FIELD_PHONE_WORK_DESC"
+				label="PLG_USER_MEMBER_FIELD_PHONE_WORK_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_street" type="list"
+				description="PLG_USER_MEMBER_FIELD_STREET_DESC"
+				label="PLG_USER_MEMBER_FIELD_STREET_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_city" type="list"
+				description="PLG_USER_MEMBER_FIELD_CITY_DESC"
+				label="PLG_USER_MEMBER_FIELD_CITY_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_state" type="list"
+				description="PLG_USER_MEMBER_FIELD_STATE_DESC"
+				label="PLG_USER_MEMBER_FIELD_STATE_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_country" type="list"
+				description="PLG_USER_MEMBER_FIELD_COUNTRY_DESC"
+				label="PLG_USER_MEMBER_FIELD_COUNTRY_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_postalcode" type="list"
+				description="PLG_USER_MEMBER_FIELD_POSTALCODE_DESC"
+				label="PLG_USER_MEMBER_FIELD_POSTALCODE_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="register-require_birthdate" type="list"
+				description="PLG_USER_MEMBER_FIELD_BIRTHDATE_DESC"
+				label="PLG_USER_MEMBER_FIELD_BIRTHDATE_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="spacer1" type="spacer"
+					hr="true"
+				/>
+        <field name="profile-require-user" type="spacer" class="text"
+					label="PLG_USER_MEMBER_FIELD_NAME_PROFILE_REQUIRE_USER"
+				/>
+        <field name="profile-require_first_name" type="list"
+				description="PLG_USER_MEMBER_FIELD_FIRST_NAME_DESC"
+				label="PLG_USER_MEMBER_FIELD_FIRST_NAME_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_last_name" type="list"
+				description="PLG_USER_MEMBER_FIELD_LAST_NAME_DESC"
+				label="PLG_USER_MEMBER_FIELD_LAST_NAME_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_phone_home" type="list"
+				description="PLG_USER_MEMBER_FIELD_PHONE_HOME_DESC"
+				label="PLG_USER_MEMBER_FIELD_PHONE_HOME_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_phone_mobile" type="list"
+				description="PLG_USER_MEMBER_FIELD_PHONE_MOBILE_DESC"
+				label="PLG_USER_MEMBER_FIELD_PHONE_MOBILE_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_phone_work" type="list"
+				description="PLG_USER_MEMBER_FIELD_PHONE_WORK_DESC"
+				label="PLG_USER_MEMBER_FIELD_PHONE_WORK_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_street" type="list"
+				description="PLG_USER_MEMBER_FIELD_STREET_DESC"
+				label="PLG_USER_MEMBER_FIELD_STREET_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_city" type="list"
+				description="PLG_USER_MEMBER_FIELD_CITY_DESC"
+				label="PLG_USER_MEMBER_FIELD_CITY_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_state" type="list"
+				description="PLG_USER_MEMBER_FIELD_STATE_DESC"
+				label="PLG_USER_MEMBER_FIELD_STATE_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_country" type="list"
+				description="PLG_USER_MEMBER_FIELD_COUNTRY_DESC"
+				label="PLG_USER_MEMBER_FIELD_COUNTRY_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_postalcode" type="list"
+				description="PLG_USER_MEMBER_FIELD_POSTALCODE_DESC"
+				label="PLG_USER_MEMBER_FIELD_POSTALCODE_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+        <field name="profile-require_birthdate" type="list"
+				description="PLG_USER_MEMBER_FIELD_BIRTHDATE_DESC"
+				label="PLG_USER_MEMBER_FIELD_BIRTHDATE_LABEL"
+				>
+          <option value="2">JOPTION_REQUIRED</option>
+          <option value="1">JOPTION_OPTIONAL</option>
+          <option value="0">JDISABLED</option>
+        </field>
+      </fieldset>
+    </fields>
+  </config>
+</extension>
