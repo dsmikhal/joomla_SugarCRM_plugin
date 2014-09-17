@@ -47,7 +47,7 @@ class plgUserLogin_log extends JPlugin
         'login', array(
           'user_auth' => array(
             'user_name' => $this->params->get('username'),
-            'password'  => md5($this->params->get('password')),
+            'password'  => $this->params->get('password'),
           )
         )
       );

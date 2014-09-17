@@ -1,8 +1,11 @@
 <?php
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted access' );
-
+// System includes
+require_once JPATH_LIBRARIES . '/import.legacy.php';
 jimport('joomla.plugin.plugin');
+jimport('joomla.log.log');
+jimport('joomla.error.log');
 
 class plgUserSugaruser_profile extends JPlugin {
 
@@ -12,14 +15,14 @@ class plgUserSugaruser_profile extends JPlugin {
     jimport('joomla.user.helper');
     if ($isnew) return true;
     if (($instance = JFactory::getUser($user['id'])) != null)  {
-      if (($sugarId = $instance->getParam("sugar_id", false)) !== false && isset($user['member'])) {
+      if (($sugarId = $instance->getParam("sugar_id", false)) !== false /*&& isset($user['member'])*/) {
         $attributes = array();
-        foreach ($user['member'] as $key=>$value) {
+       /* foreach ($user['member'] as $key=>$value) {
           $value = trim($value);
           if (isset($value) && !empty($value)) {
             $attributes[] = array('name'=>$key, 'value'=>$value);
           }
-        }
+        }*/
         $attributes[] = array(
           'name'=>'email1',
           'value'=>$user['email'],
@@ -27,8 +30,7 @@ class plgUserSugaruser_profile extends JPlugin {
         if (($sugarId = $instance->getParam("sugar_id", false)) !== false) {
           $this->sugarLogin();
           $attributes[] = array('name'=>'id', 'value'=>$sugarId);
-          $attributes[] = array('name'=>'not_update_joomla_c', 'value'=>'1');
-
+	   $attributes[] = array('name'=>'not_update_joomla_c', 'value'=>'1');
           $response = $this->callSugarRest("set_entry", array(
             'module_name'=>'Contacts',
             'name_value_list'=>$attributes,
@@ -48,7 +50,7 @@ class plgUserSugaruser_profile extends JPlugin {
         'login', array(
           'user_auth' => array(
             'user_name' => $this->params->get('username'),
-            'password'  => md5($this->params->get('password')),
+            'password'  => $this->params->get('password'),
           )
         )
       );
@@ -61,6 +63,9 @@ class plgUserSugaruser_profile extends JPlugin {
   }
 
   function callSugarRest($method, $params) {
+
+	JLog::addLogger(array('text_entry_format' => "{DATE} - {TIME} - {CLIENTIP} - {MESSAGE}"),JLog::ALL & ~JLog::DEBUG,array('Sugar REST'));
+
     $curl = curl_init($this->params->get('url'));
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_HEADER, false);
@@ -71,11 +76,15 @@ class plgUserSugaruser_profile extends JPlugin {
     $json     = json_encode($params);
     $postArgs = 'method=' . urlencode($method) . '&input_type=json&response_type=json&rest_data=' . urlencode($json);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $postArgs);
-    JLog::add("Call Sugar Rest $method (" . var_export($params, true) . ")");
+    JLog::add("Call Sugar Rest $method (" . var_export($params, true) . ")",JLog::WARNING, 'SugarREST');
     $response = curl_exec($curl);
     curl_close($curl);
-    JLog::add("Sugar Rest Result: $response");
+    JLog::add("Sugar Rest Result: $response", JLog::WARNING, 'SugarREST');
     return json_decode($response, true);
   }
+
 }
+
+
+
 ?>

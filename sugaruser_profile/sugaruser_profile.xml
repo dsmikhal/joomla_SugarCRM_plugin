@@ -19,7 +19,7 @@
                        label="Sugar API URL"
                        description="Enter the url to Sugar API"/>
         <field default="" name="username" type="text" size="20" label="API Username" description="API Username"/>
-        <field default="" name="password" type="text" size="20" label="API Password" description="API Password"/>
+        <field default="" name="password" type="text" size="20" label="API Password in MD5" description="API Password"/>
       </fieldset>
     </fields>
   </config>
