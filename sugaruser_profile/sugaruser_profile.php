@@ -11,46 +11,47 @@ class plgUserSugaruser_profile extends JPlugin {
 
   protected static $sugarcrm_session = false;
 
-  function onUserAfterSave($user, $isnew, $success, $msg) {
-    jimport('joomla.user.helper');
-    if ($isnew) return true;
-    if (($instance = JFactory::getUser($user['id'])) != null)  {
-      if (($sugarId = $instance->getParam("sugar_id", false)) !== false /*&& isset($user['member'])*/) {
-        $attributes = array();
-       /* foreach ($user['member'] as $key=>$value) {
-          $value = trim($value);
-          if (isset($value) && !empty($value)) {
-            $attributes[] = array('name'=>$key, 'value'=>$value);
-          }
-        }*/
-        $attributes[] = array(
-          'name'=>'email1',
-          'value'=>$user['email'],
-        );
-        if (($sugarId = $instance->getParam("sugar_id", false)) !== false) {
-          $this->sugarLogin();
-          $attributes[] = array('name'=>'id', 'value'=>$sugarId);
-	   $attributes[] = array('name'=>'not_update_joomla_c', 'value'=>'1');
-          $response = $this->callSugarRest("set_entry", array(
-            'module_name'=>'Contacts',
-            'name_value_list'=>$attributes,
-          ));
-          if ($response === null || !is_array($response)) {
-            throw new Exception('Unable to save profile to CRM System.');
-          }
-        }
-      }
-    }
-    return true;
-  }
+    function onUserAfterSave($user, $isnew, $success, $msg) {
 
-  function sugarLogin() {
+        JLog::add("Server variable: " . var_export($_SERVER, true) );
+        jimport('joomla.user.helper');
+
+        if ($isnew) return true;
+
+        if (($instance = JFactory::getUser($user['id'])) != null)  {
+            if (($sugarId = $instance->getParam("sugar_id", false)) !== false /*&& isset($user['member'])*/) {
+                $sugarModule = $instance->getParam("sugar_module", false);
+                $attributes = array();
+                $attributes[] = array(
+                    'name'=>'email1',
+                    'value'=>$user['email'],
+                );
+                if (($sugarId = $instance->getParam("sugar_id", false)) !== false) {
+                    $this->sugarLogin();
+                    $attributes[] = array('name'=>'id', 'value'=>$sugarId);
+                    $attributes[] = array('name'=>'not_update_joomla_c', 'value'=>'1');
+                    $response = $this->callSugarRest("set_entry", array(
+                        'module_name' => $sugarModule,
+                        'name_value_list' => $attributes,
+                    ));
+                    if ($response === null || !is_array($response)) {
+                        throw new Exception('Unable to save profile to CRM System.');
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+
+    function sugarLogin() {
     if (self::$sugarcrm_session === false) {
       $result = $this->callSugarRest(
         'login', array(
           'user_auth' => array(
             'user_name' => $this->params->get('username'),
-            'password'  => $this->params->get('password'),
+            'password'  => md5($this->params->get('password')),
+
           )
         )
       );
@@ -64,7 +65,7 @@ class plgUserSugaruser_profile extends JPlugin {
 
   function callSugarRest($method, $params) {
 
-	JLog::addLogger(array('text_entry_format' => "{DATE} - {TIME} - {CLIENTIP} - {MESSAGE}"),JLog::ALL & ~JLog::DEBUG,array('Sugar REST'));
+	// JLog::addLogger(array('text_entry_format' => "{DATE} - {TIME} - {CLIENTIP} - {MESSAGE}"),JLog::ALL & ~JLog::DEBUG,array('Sugar REST'));
 
     $curl = curl_init($this->params->get('url'));
     curl_setopt($curl, CURLOPT_POST, true);
@@ -82,6 +83,23 @@ class plgUserSugaruser_profile extends JPlugin {
     JLog::add("Sugar Rest Result: $response", JLog::WARNING, 'SugarREST');
     return json_decode($response, true);
   }
+
+    public function onContentPrepareData($context, $data)
+    {
+        // Check we are manipulating a valid form.
+        if (!in_array($context, array('com_users.profile', 'com_users.user', 'com_users.registration', 'com_admin.profile')))
+        {
+            return true;
+        }
+
+        if (is_object($data))
+        {
+            $data->username = $data->email;
+
+        }
+        return true;
+    }
+
 
 }
 

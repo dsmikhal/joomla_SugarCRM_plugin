@@ -70,10 +70,10 @@ class plgUserLogin_log extends JPlugin
     $json     = json_encode($params);
     $postArgs = 'method=' . urlencode($method) . '&input_type=json&response_type=json&rest_data=' . urlencode($json);
     curl_setopt($curl, CURLOPT_POSTFIELDS, $postArgs);
-    JLog::add("Call Sugar Rest $method (" . var_export($params, true) . ")");
+    //JLog::add("Call Sugar Rest $method (" . var_export($params, true) . ")");
     $response = curl_exec($curl);
     curl_close($curl);
-    JLog::add("Sugar Rest Result: $response");
+    //JLog::add("Sugar Rest Result: $response");
     return json_decode($response, true);
   }
 }
