@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="user">
+  <name>Marketo ON tracking</name>
+  <author>Dmitrii</author>
+  <creationDate>September 2015</creationDate>
+  <copyright>(C) 2012 Trading Pursuits All rights reserved.</copyright>
+  <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+  <authorEmail>d.mikhalchenko@tradingpursuits.com</authorEmail>
+  <authorUrl>http://www.tradingpursuits.com</authorUrl>
+  <version>0.0.1</version>
+  <description>This plugin allow to keep lead tracking with munchkin code.</description>
+  <files>
+      <filename plugin="mkto_on_track">mkto_on_track.php</filename>
+  </files>
+  <config>
+    <fields name="params">
+      <fieldset name="basic">
+        <field default="" name="marketoSoapEndPoint" type="text" size="20"
+                       label="Marketo Soap End Point"
+                       description="Enter the Marketo End Point for SOAP call"/>
+        <field default="" name="marketoUserId" type="text" size="20" label="Marketo User Id" description="marketo SOAP User Id"/>
+        <field default="" name="marketoSecretKey" type="text" size="20" label="Marketo Secret Key" description="Marketo SOAP Secret Key"/>
+      </fieldset>
+    </fields>
+  </config>
+</extension>

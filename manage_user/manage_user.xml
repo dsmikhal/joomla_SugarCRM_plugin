@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="restapi">
+	<name>Creates/Updates Users through REST</name>
+	<author>Trading Pursuit Project</author>
+	<creationDate>June 20012</creationDate>
+	<copyright>Copyright (C) 20012 - 20013 Open Source Matters. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>admin@tradingpursuits.com</authorEmail>
+	<authorUrl>www.tradingpursuits.com</authorUrl>
+	<version>3.1.0</version>
+	<description>Creates/Updates Joomla User using REST call</description>
+	<files>
+		<filename plugin="manage_user">manage_user.php</filename>
+	</files>
+</extension>
